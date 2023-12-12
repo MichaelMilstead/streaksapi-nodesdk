@@ -1,0 +1,14 @@
+{
+  "name": "streaksapi",
+  "version": "0.1.0",
+  "description": "SDK for using the streaks api",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "streaks"
+  ],
+  "author": "milst",
+  "license": "ISC"
+}
