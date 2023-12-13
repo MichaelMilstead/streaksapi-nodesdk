@@ -60,4 +60,11 @@ export class Streaks {
       streakId
     );
   }
+
+  async getDueDate(config: StreakConfigDTO, streakId?: string): Promise<Date> {
+    const msUntilDue = await this.getTimeUntilDueMs(config, streakId);
+    const now = new Date();
+    const dueDate = new Date(now.getTime() + msUntilDue);
+    return dueDate;
+  }
 }
