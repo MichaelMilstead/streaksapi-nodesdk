@@ -23,16 +23,16 @@ export class Streaks {
     this.baseUrl = baseUrl;
   }
 
-  private async addEvent(event: CreateStreakEventDto): Promise<StreakEvent> {
+  async addEvent(event: CreateStreakEventDto): Promise<StreakEvent> {
     return addEvent(event, this.apiKey, this.baseUrl);
   }
 
-  private async getStreak(config: StreakConfigDTO): Promise<number> {
+  async getStreak(config: StreakConfigDTO): Promise<number> {
     const streak = await getStreak(this.projectId, this.apiKey, this.baseUrl);
     return streak;
   }
 
-  private async getHistory(): Promise<StreakEvent[]> {
+  async getHistory(): Promise<StreakEvent[]> {
     const history = await getHistoryForStreak(
       this.projectId,
       this.apiKey,
@@ -40,7 +40,8 @@ export class Streaks {
     );
     return history;
   }
-  private async getTimeUntilDueMs(userId: string): Promise<number> {
+
+  async getTimeUntilDueMs(userId: string): Promise<number> {
     return getTimeUntilDueMs(userId, this.projectId, this.apiKey, this.baseUrl);
   }
 }
