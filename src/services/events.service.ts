@@ -1,4 +1,5 @@
 import { CreateStreakEventDto } from "../models/CreateStreakEvent.dto";
+import { StreakConfigDTO } from "../models/StreakConfig";
 import { StreakEvent } from "../models/StreakEvent";
 import { getAuthHeader } from "./auth-headers-helper";
 import { get, post } from "./axios.http-service";
@@ -35,11 +36,12 @@ export async function addEvent(
 export async function getStreak(
   projectId: string,
   apiKey: string,
-  baseUrl: string
+  baseUrl: string,
+  config: StreakConfigDTO
 ): Promise<number> {
   const authHeader = await getAuthHeader(apiKey);
   const streak = await get(
-    `${baseUrl}/events/${projectId}/currentStreak/`,
+    `${baseUrl}/events/${projectId}/currentStreak?frequencyType=${config.frequencyType}&customFrequencyMS=${config.customFrequencyMS}&weekStartDay=${config.weekStartDay}&countSamePeriod=${config.countSamePeriod}`,
     authHeader
   );
 
@@ -50,11 +52,12 @@ export async function getTimeUntilDueMs(
   userId: string,
   projectId: string,
   apiKey: string,
-  baseUrl: string
+  baseUrl: string,
+  config: StreakConfigDTO
 ): Promise<number> {
   const authHeader = await getAuthHeader(apiKey);
   const streak = await get(
-    `${baseUrl}/events/${projectId}/timeUntilDueMS/${userId}?frequencyType=weekly&customFrequencyMS=0&weekStartDay=Monday&countSamePeriod=true`,
+    `${baseUrl}/events/${projectId}/timeUntilDueMS/${userId}?frequencyType=${config.frequencyType}&customFrequencyMS=${config.customFrequencyMS}&weekStartDay=${config.weekStartDay}&countSamePeriod=${config.countSamePeriod}`,
     authHeader
   );
 

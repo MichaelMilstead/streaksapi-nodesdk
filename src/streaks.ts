@@ -28,7 +28,12 @@ export class Streaks {
   }
 
   async getStreak(config: StreakConfigDTO): Promise<number> {
-    const streak = await getStreak(this.projectId, this.apiKey, this.baseUrl);
+    const streak = await getStreak(
+      this.projectId,
+      this.apiKey,
+      this.baseUrl,
+      config
+    );
     return streak;
   }
 
@@ -41,7 +46,16 @@ export class Streaks {
     return history;
   }
 
-  async getTimeUntilDueMs(userId: string): Promise<number> {
-    return getTimeUntilDueMs(userId, this.projectId, this.apiKey, this.baseUrl);
+  async getTimeUntilDueMs(
+    userId: string,
+    config: StreakConfigDTO
+  ): Promise<number> {
+    return getTimeUntilDueMs(
+      userId,
+      this.projectId,
+      this.apiKey,
+      this.baseUrl,
+      config
+    );
   }
 }
