@@ -1,6 +1,6 @@
 {
   "name": "streaksapi",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "SDK for using the streaks api",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "scripts": {
     "test": "npm run test",
     "build": "tsc",
-    "publish": "npm version patch && npm run build && npm publish"
+    "publish": "npm run build && npm publish"
   },
   "keywords": [
     "streaks"

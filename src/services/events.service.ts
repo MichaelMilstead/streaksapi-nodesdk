@@ -37,11 +37,18 @@ export async function getStreak(
   projectId: string,
   apiKey: string,
   baseUrl: string,
-  config: StreakConfigDTO
+  config: StreakConfigDTO,
+  streakId?: string
 ): Promise<number> {
   const authHeader = await getAuthHeader(apiKey);
   const streak = await get(
-    `${baseUrl}/events/${projectId}/currentStreak?frequencyType=${config.frequencyType}&customFrequencyMS=${config.customFrequencyMS}&weekStartDay=${config.weekStartDay}&countSamePeriod=${config.countSamePeriod}`,
+    `${baseUrl}/events/${projectId}/currentStreak${
+      streakId ? `/${streakId}` : ``
+    }?frequencyType=${config.frequencyType}&customFrequencyMS=${
+      config.customFrequencyMS
+    }&weekStartDay=${config.weekStartDay}&countSamePeriod=${
+      config.countSamePeriod
+    }`,
     authHeader
   );
 
@@ -49,15 +56,21 @@ export async function getStreak(
 }
 
 export async function getTimeUntilDueMs(
-  userId: string,
   projectId: string,
   apiKey: string,
   baseUrl: string,
-  config: StreakConfigDTO
+  config: StreakConfigDTO,
+  streakId?: string
 ): Promise<number> {
   const authHeader = await getAuthHeader(apiKey);
   const streak = await get(
-    `${baseUrl}/events/${projectId}/timeUntilDueMS/${userId}?frequencyType=${config.frequencyType}&customFrequencyMS=${config.customFrequencyMS}&weekStartDay=${config.weekStartDay}&countSamePeriod=${config.countSamePeriod}`,
+    `${baseUrl}/events/${projectId}/timeUntilDueMS${
+      streakId ? `/${streakId}` : ``
+    }?frequencyType=${config.frequencyType}&customFrequencyMS=${
+      config.customFrequencyMS
+    }&weekStartDay=${config.weekStartDay}&countSamePeriod=${
+      config.countSamePeriod
+    }`,
     authHeader
   );
 
@@ -67,11 +80,12 @@ export async function getTimeUntilDueMs(
 export async function getHistoryForStreak(
   projectId: string,
   apiKey: string,
-  baseUrl: string
+  baseUrl: string,
+  streakId?: string
 ): Promise<StreakEvent[]> {
   const authHeader = await getAuthHeader(apiKey);
   const history = await get(
-    `${baseUrl}/events/${projectId}/history/`,
+    `${baseUrl}/events/${projectId}/history/${streakId ? `/${streakId}` : ``}`,
     authHeader
   );
 

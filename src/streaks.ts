@@ -27,35 +27,37 @@ export class Streaks {
     return addEvent(event, this.apiKey, this.baseUrl);
   }
 
-  async getStreak(config: StreakConfigDTO): Promise<number> {
+  async getStreak(config: StreakConfigDTO, streakId?: string): Promise<number> {
     const streak = await getStreak(
       this.projectId,
       this.apiKey,
       this.baseUrl,
-      config
+      config,
+      streakId
     );
     return streak;
   }
 
-  async getHistory(): Promise<StreakEvent[]> {
+  async getHistory(streakId?: string): Promise<StreakEvent[]> {
     const history = await getHistoryForStreak(
       this.projectId,
       this.apiKey,
-      this.baseUrl
+      this.baseUrl,
+      streakId
     );
     return history;
   }
 
   async getTimeUntilDueMs(
-    userId: string,
-    config: StreakConfigDTO
+    config: StreakConfigDTO,
+    streakId?: string
   ): Promise<number> {
     return getTimeUntilDueMs(
-      userId,
       this.projectId,
       this.apiKey,
       this.baseUrl,
-      config
+      config,
+      streakId
     );
   }
 }
