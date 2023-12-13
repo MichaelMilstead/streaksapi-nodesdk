@@ -2,6 +2,10 @@
   "name": "streaksapi",
   "version": "0.1.1",
   "description": "SDK for using the streaks api",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichaelMilstead/streaksapi-nodesdk"
+  },
   "main": "index.js",
   "scripts": {
     "test": "npm run test"
