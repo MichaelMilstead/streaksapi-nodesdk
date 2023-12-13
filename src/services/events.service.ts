@@ -5,21 +5,26 @@ import { get, post } from "./axios.http-service";
 
 export async function getAllEventsForProject(
   projectId: string,
-  apiKey: string
+  apiKey: string,
+  baseUrl: string
 ): Promise<StreakEvent[]> {
   const authHeader = await getAuthHeader(apiKey);
-  const events = await get(`/events/project/${projectId}`, authHeader);
+  const events = await get(
+    `${baseUrl}/events/project/${projectId}`,
+    authHeader
+  );
 
   return events;
 }
 
 export async function addEvent(
   event: CreateStreakEventDto,
-  apiKey: string
+  apiKey: string,
+  baseUrl: string
 ): Promise<StreakEvent> {
   const authHeader = await getAuthHeader(apiKey);
   const newEvent = await post(
-    `/events/project/${event.projectId}`,
+    `${baseUrl}/events/project/${event.projectId}`,
     event,
     authHeader
   );
@@ -29,10 +34,14 @@ export async function addEvent(
 
 export async function getStreak(
   projectId: string,
-  apiKey: string
+  apiKey: string,
+  baseUrl: string
 ): Promise<number> {
   const authHeader = await getAuthHeader(apiKey);
-  const streak = await get(`/events/${projectId}/currentStreak/`, authHeader);
+  const streak = await get(
+    `${baseUrl}/events/${projectId}/currentStreak/`,
+    authHeader
+  );
 
   return streak;
 }
@@ -40,11 +49,12 @@ export async function getStreak(
 export async function getTimeUntilDueMs(
   userId: string,
   projectId: string,
-  apiKey: string
+  apiKey: string,
+  baseUrl: string
 ): Promise<number> {
   const authHeader = await getAuthHeader(apiKey);
   const streak = await get(
-    `/events/${projectId}/timeUntilDueMS/${userId}?frequencyType=weekly&customFrequencyMS=0&weekStartDay=Monday&countSamePeriod=true`,
+    `${baseUrl}/events/${projectId}/timeUntilDueMS/${userId}?frequencyType=weekly&customFrequencyMS=0&weekStartDay=Monday&countSamePeriod=true`,
     authHeader
   );
 
@@ -53,10 +63,14 @@ export async function getTimeUntilDueMs(
 
 export async function getHistoryForStreak(
   projectId: string,
-  apiKey: string
+  apiKey: string,
+  baseUrl: string
 ): Promise<StreakEvent[]> {
   const authHeader = await getAuthHeader(apiKey);
-  const history = await get(`/events/${projectId}/history/`, authHeader);
+  const history = await get(
+    `${baseUrl}/events/${projectId}/history/`,
+    authHeader
+  );
 
   return history;
 }
