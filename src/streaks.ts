@@ -1,5 +1,5 @@
 import { CreateStreakEventDto } from "./models/CreateStreakEvent.dto";
-import { StreakConfigDTO } from "./models/StreakConfig";
+import { StreakConfig } from "./models/StreakConfig";
 import { StreakEvent } from "./models/StreakEvent";
 import {
   addEvent,
@@ -46,11 +46,11 @@ export class Streaks {
   /**
    * Retrieves a specific streak.
    *
-   * @param {StreakConfigDTO} config - The configuration object for the streak.
+   * @param {StreakConfig} config - The configuration object for the streak.
    * @param {string} [streakId] - The optional ID of the streak. Default is 'default'.
    * @returns {Promise<number>} A promise that resolves to the streak.
    */
-  async getStreak(config: StreakConfigDTO, streakId?: string): Promise<number> {
+  async getStreak(config: StreakConfig, streakId?: string): Promise<number> {
     const streak = await getStreak(
       this.projectId,
       this.apiKey,
@@ -80,12 +80,12 @@ export class Streaks {
   /**
    * Gets the time in milliseconds until the next event is due for a streak.
    *
-   * @param {StreakConfigDTO} config - The configuration object for the streak.
+   * @param {StreakConfig} config - The configuration object for the streak.
    * @param {string} [streakId] - The optional ID of the streak. Default is 'default'.
    * @returns {Promise<number>} A promise that resolves to the number of milliseconds until the next event is due.
    */
   async getTimeUntilDueMs(
-    config: StreakConfigDTO,
+    config: StreakConfig,
     streakId?: string
   ): Promise<number> {
     return getTimeUntilDueMs(
@@ -100,11 +100,11 @@ export class Streaks {
   /**
    * Calculates the due date of the next event for a streak.
    *
-   * @param {StreakConfigDTO} config - The configuration object for the streak.
+   * @param {StreakConfig} config - The configuration object for the streak.
    * @param {string} [streakId] - The optional ID of the streak. Default is 'default'.
    * @returns {Promise<Date>} A promise that resolves to the Date when the next event is due.
    */
-  async getDueDate(config: StreakConfigDTO, streakId?: string): Promise<Date> {
+  async getDueDate(config: StreakConfig, streakId?: string): Promise<Date> {
     const msUntilDue = await this.getTimeUntilDueMs(config, streakId);
     const now = new Date();
     const dueDate = new Date(now.getTime() + msUntilDue);

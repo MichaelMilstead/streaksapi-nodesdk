@@ -48,13 +48,13 @@ export enum WeekStartDay {
 /**
  * Configuration used for calculating a streak.
  *
- * @interface StreakConfigDTO
+ * @interface StreakConfig
  * @property {FrequencyType} frequencyType - The frequency type of the streak.
  * @property {number} customFrequencyMS - The custom frequency in milliseconds, applicable if frequency type is Custom.
  * @property {WeekStartDay} weekStartDay - The day of the week the streak is considered to start on. Defaults to Monday.
  * @property {boolean} countSamePeriod - Flag indicating whether to count occurrences within the same period towards the streak. For example, using a daily streak should two events on Monday count as a streak of 2 or 1? Defaults to false.
  */
-export interface StreakConfigDTO {
+export interface StreakConfig {
   frequencyType: FrequencyType;
   customFrequencyMS: number;
   weekStartDay: WeekStartDay;

@@ -1,5 +1,5 @@
 import { CreateStreakEventDto } from "../models/CreateStreakEvent.dto";
-import { StreakConfigDTO } from "../models/StreakConfig";
+import { StreakConfig } from "../models/StreakConfig";
 import { StreakEvent } from "../models/StreakEvent";
 import { getAuthHeader } from "./auth-headers-helper";
 import { get, post } from "./axios.http-service";
@@ -37,7 +37,7 @@ export async function getStreak(
   projectId: string,
   apiKey: string,
   baseUrl: string,
-  config: StreakConfigDTO,
+  config: StreakConfig,
   streakId?: string
 ): Promise<number> {
   const authHeader = await getAuthHeader(apiKey);
@@ -59,7 +59,7 @@ export async function getTimeUntilDueMs(
   projectId: string,
   apiKey: string,
   baseUrl: string,
-  config: StreakConfigDTO,
+  config: StreakConfig,
   streakId?: string
 ): Promise<number> {
   const authHeader = await getAuthHeader(apiKey);
