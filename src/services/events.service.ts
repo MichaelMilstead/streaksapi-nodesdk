@@ -85,7 +85,7 @@ export async function getHistoryForStreak(
 ): Promise<StreakEvent[]> {
   const authHeader = await getAuthHeader(apiKey);
   const history = await get(
-    `${baseUrl}/events/${projectId}/history/${streakId ? `/${streakId}` : ``}`,
+    `${baseUrl}/events/${projectId}/history${streakId ? `/${streakId}` : ``}`,
     authHeader
   );
 
