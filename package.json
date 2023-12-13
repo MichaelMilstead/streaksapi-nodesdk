@@ -10,7 +10,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "npm run test",
-    "build": "tsc"
+    "build": "tsc",
+    "publish": "npm run build && npm publish"
   },
   "keywords": [
     "streaks"
